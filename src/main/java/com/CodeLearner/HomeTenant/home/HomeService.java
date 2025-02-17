@@ -13,4 +13,6 @@ public interface HomeService {
     public HomeResponse update(Long homeId,HomeRequest request);
 
     public DeleteOperationResponse delete(Long homeId);
+
+    public HomeResponse fetchById(Long homeId);
 }

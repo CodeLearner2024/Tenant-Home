@@ -52,4 +52,10 @@ public class HomeServiceImpl implements HomeService{
         this.homeRepository.deleteById(home.getId());
         return new DeleteOperationResponse(true);
     }
+
+    @Override
+    public HomeResponse fetchById(Long homeId) {
+        Home home = this.homeRepository.findById(homeId).orElseThrow(() -> new UnsupportedOperationException("Home does not exist"));
+        return this.homeConverter.toResponse(home);
+    }
 }
