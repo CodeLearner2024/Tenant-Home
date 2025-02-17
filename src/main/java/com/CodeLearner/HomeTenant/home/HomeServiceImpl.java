@@ -1,5 +1,6 @@
 package com.CodeLearner.HomeTenant.home;
 
+import com.CodeLearner.HomeTenant.global.DeleteOperationResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,5 +26,30 @@ public class HomeServiceImpl implements HomeService{
     @Override
     public List<HomeResponse> fetch() {
         return homeRepository.findAll().stream().map(this.homeConverter::toResponse).toList();
+    }
+
+    @Override
+    public HomeResponse update(Long homeId, HomeRequest request) {
+
+        return this.homeRepository.findById(homeId).map(home ->{
+            if(request.getName() != null){
+                home.setName(request.getName());
+            }
+            if(request.getCode() != null){
+                home.setCode(request.getCode());
+            }
+            if(request.getAdresse() != null){
+                home.setAdresse(request.getAdresse());
+            }
+            Home savedHome = this.homeRepository.save(home);
+            return this.homeConverter.toResponse(savedHome);
+        }).orElseThrow(() -> new UnsupportedOperationException("That home does not exist"));
+    }
+
+    @Override
+    public DeleteOperationResponse delete(Long homeId) {
+        Home home = this.homeRepository.findById(homeId).orElseThrow(() -> new UnsupportedOperationException("Home does not exist"));
+        this.homeRepository.deleteById(home.getId());
+        return new DeleteOperationResponse(true);
     }
 }
