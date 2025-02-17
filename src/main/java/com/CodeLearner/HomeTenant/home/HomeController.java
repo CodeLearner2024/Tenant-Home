@@ -40,7 +40,7 @@ public class HomeController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<HomeResponse> fetchById(@PathVariable("id") Long id){
         HomeResponse response = this.homeService.fetchById(id);
         return new ResponseEntity<>(response,HttpStatus.OK);
