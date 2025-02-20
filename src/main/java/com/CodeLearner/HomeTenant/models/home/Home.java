@@ -1,6 +1,10 @@
-package com.CodeLearner.HomeTenant.home;
+package com.CodeLearner.HomeTenant.models.home;
 
+import com.CodeLearner.HomeTenant.models.house.House;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity(name = "Home")
 @Table(name = "tbl_homes")
@@ -11,6 +15,10 @@ public class Home {
     private String code;
     private String name;
     private String adresse;
+
+    @OneToMany(mappedBy = "home",fetch = FetchType.EAGER)
+    @JsonBackReference
+    private List<House> houses;
 
 
     public Home() {

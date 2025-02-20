@@ -1,4 +1,4 @@
-package com.CodeLearner.HomeTenant.home;
+package com.CodeLearner.HomeTenant.models.home;
 
 import com.CodeLearner.HomeTenant.global.DeleteOperationResponse;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,11 @@ public class HomeServiceImpl implements HomeService{
 
     @Override
     public HomeResponse create(HomeRequest request) {
+        boolean byCode = this.homeRepository.existsByCodeIgnoreCase(request.getCode());
+        boolean byName = this.homeRepository.existsByNameIgnoreCase(request.getName());
+        if(byCode || byName){
+            throw new UnsupportedOperationException("Home with the same code or name already exist");
+        }
         Home home = this.homeConverter.toEntity(request);
         Home savedHome = this.homeRepository.save(home);
         return this.homeConverter.toResponse(savedHome);

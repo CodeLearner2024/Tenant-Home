@@ -1,4 +1,4 @@
-package com.CodeLearner.HomeTenant.home;
+package com.CodeLearner.HomeTenant.models.home;
 
 import com.CodeLearner.HomeTenant.global.DeleteOperationResponse;
 import org.springframework.http.HttpStatus;
