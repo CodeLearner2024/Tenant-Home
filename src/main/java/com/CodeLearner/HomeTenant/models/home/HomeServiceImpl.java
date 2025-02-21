@@ -1,6 +1,8 @@
 package com.CodeLearner.HomeTenant.models.home;
 
+import com.CodeLearner.HomeTenant.exception.exception.ResourceNotFoundException;
 import com.CodeLearner.HomeTenant.global.DeleteOperationResponse;
+import com.CodeLearner.HomeTenant.global.I18nConstants;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,19 +50,19 @@ public class HomeServiceImpl implements HomeService{
             }
             Home savedHome = this.homeRepository.save(home);
             return this.homeConverter.toResponse(savedHome);
-        }).orElseThrow(() -> new UnsupportedOperationException("That home does not exist"));
+        }).orElseThrow(() -> new ResourceNotFoundException(I18nConstants.ELEMENT_NOT_FOUND,I18nConstants.ELEMENT_NOT_FOUND));
     }
 
     @Override
     public DeleteOperationResponse delete(Long homeId) {
-        Home home = this.homeRepository.findById(homeId).orElseThrow(() -> new UnsupportedOperationException("Home does not exist"));
+        Home home = this.homeRepository.findById(homeId).orElseThrow(() -> new ResourceNotFoundException(I18nConstants.ELEMENT_NOT_FOUND,I18nConstants.ELEMENT_NOT_FOUND));
         this.homeRepository.deleteById(home.getId());
         return new DeleteOperationResponse(true);
     }
 
     @Override
     public HomeResponse fetchById(Long homeId) {
-        Home home = this.homeRepository.findById(homeId).orElseThrow(() -> new UnsupportedOperationException("Home does not exist"));
+        Home home = this.homeRepository.findById(homeId).orElseThrow(() -> new ResourceNotFoundException(I18nConstants.ELEMENT_NOT_FOUND,I18nConstants.ELEMENT_NOT_FOUND));
         return this.homeConverter.toResponse(home);
     }
 }
