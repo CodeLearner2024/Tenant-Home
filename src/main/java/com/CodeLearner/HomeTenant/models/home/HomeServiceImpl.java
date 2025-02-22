@@ -20,10 +20,16 @@ public class HomeServiceImpl implements HomeService{
 
     @Override
     public HomeResponse create(HomeRequest request) {
+        if(request.getName() == null){
+            throw new ResourceNotFoundException(I18nConstants.NULL_NAME,I18nConstants.NULL_NAME);
+        }
+        if(request.getCode() == null){
+            throw new ResourceNotFoundException(I18nConstants.NULL_CODE,I18nConstants.NULL_CODE);
+        }
         boolean byCode = this.homeRepository.existsByCodeIgnoreCase(request.getCode());
         boolean byName = this.homeRepository.existsByNameIgnoreCase(request.getName());
         if(byCode || byName){
-            throw new UnsupportedOperationException("Home with the same code or name already exist");
+            throw new ResourceNotFoundException(I18nConstants.EXIST_ELEMENT,I18nConstants.EXIST_ELEMENT);
         }
         Home home = this.homeConverter.toEntity(request);
         Home savedHome = this.homeRepository.save(home);
@@ -39,6 +45,7 @@ public class HomeServiceImpl implements HomeService{
     public HomeResponse update(Long homeId, HomeRequest request) {
 
         return this.homeRepository.findById(homeId).map(home ->{
+
             if(request.getName() != null){
                 home.setName(request.getName());
             }
