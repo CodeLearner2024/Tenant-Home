@@ -1,6 +1,8 @@
 package com.CodeLearner.HomeTenant.models.tenant;
 
+import com.CodeLearner.HomeTenant.models.leaseagreement.LeaseAgreement;
 import com.CodeLearner.HomeTenant.models.tenant.dependent.Dependent;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -30,4 +32,8 @@ public class Tenant {
 
     @OneToMany(mappedBy = "tenant")
     private List<Dependent> dependents;
+
+    @OneToMany(mappedBy = "tenant")
+    @JsonManagedReference
+    private List<LeaseAgreement> leaseAgreements;
 }

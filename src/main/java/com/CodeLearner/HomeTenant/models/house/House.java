@@ -1,8 +1,11 @@
 package com.CodeLearner.HomeTenant.models.house;
 
 import com.CodeLearner.HomeTenant.models.home.Home;
+import com.CodeLearner.HomeTenant.models.leaseagreement.LeaseAgreement;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity(name = "House")
 @Table(name = "tbl_houses")
@@ -18,6 +21,10 @@ public class House {
     @ManyToOne(optional = false,fetch = FetchType.LAZY)
     @JsonManagedReference
     private Home home;
+
+    @OneToMany(mappedBy = "house")
+    @JsonManagedReference
+    private List<LeaseAgreement> leaseAgreements;
 
     public House() {
     }
