@@ -1,5 +1,6 @@
 package com.CodeLearner.HomeTenant.models.home;
 
+import com.CodeLearner.HomeTenant.models.expense.Expense;
 import com.CodeLearner.HomeTenant.models.house.House;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -19,6 +20,10 @@ public class Home {
     @OneToMany(mappedBy = "home",fetch = FetchType.EAGER)
     @JsonBackReference
     private List<House> houses;
+
+    @OneToMany(mappedBy = "home")
+    @JsonBackReference
+    private List<Expense> expenses;
 
 
     public Home() {
