@@ -31,6 +31,7 @@ public class ExpenseConverter {
         expense.setExpenseDate(LocalDate.now());
         expense.setAmount(request.getAmount());
         expense.setDescription(request.getDescription());
+        expense.setPromoter(request.getPromoter());
         return expense;
     }
 }
