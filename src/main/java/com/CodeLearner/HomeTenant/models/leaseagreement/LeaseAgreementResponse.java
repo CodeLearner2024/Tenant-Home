@@ -18,4 +18,6 @@ public class LeaseAgreementResponse {
     private Double modifiedRent;
     private TenantResponse tenant;
     private HouseResponse house;
+    private Double advance;
+
 }

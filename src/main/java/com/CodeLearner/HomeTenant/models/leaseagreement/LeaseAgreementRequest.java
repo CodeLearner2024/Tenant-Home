@@ -15,4 +15,6 @@ public class LeaseAgreementRequest {
     private Double modifiedRent;
     private Long tenantId;
     private Long houseId;
+    private Double advance;
+
 }

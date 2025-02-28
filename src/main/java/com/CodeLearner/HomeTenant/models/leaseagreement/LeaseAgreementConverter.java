@@ -22,6 +22,7 @@ public class LeaseAgreementConverter {
         response.setRentPayementDueDate(entity.getRentPayementDueDate());
         response.setHouse(this.houseConverter.toResponse(entity.getHouse()));
         response.setTenant(this.tenantConverter.toResponse(entity.getTenant()));
+        response.setAdvance(entity.getAdvance());
         return response;
     }
 
@@ -30,6 +31,7 @@ public class LeaseAgreementConverter {
         entity.setAgreementDate(request.getAgreementDate());
         entity.setModifiedRent(request.getModifiedRent());
         entity.setRentPayementDueDate(request.getRentPayementDueDate());
+        entity.setAdvance(request.getAdvance());
         return entity;
     }
 }
