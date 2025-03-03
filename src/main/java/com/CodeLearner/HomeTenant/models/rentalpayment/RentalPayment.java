@@ -1,6 +1,7 @@
 package com.CodeLearner.HomeTenant.models.rentalpayment;
 
 import com.CodeLearner.HomeTenant.models.house.House;
+import com.CodeLearner.HomeTenant.models.image.Image;
 import com.CodeLearner.HomeTenant.models.tenant.Tenant;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -30,4 +31,9 @@ public class RentalPayment {
     @ManyToOne(optional = false)
     @JsonManagedReference
     private House house;
+
+    @OneToOne(mappedBy = "rentalPayment", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Image image;
+
 }
