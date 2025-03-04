@@ -31,6 +31,9 @@ public class RentalPaymentServiceImpl implements RentalPaymentService{
         RentalPayment rentalPayment = this.rentalPaymentConverter.convertRequestToEntity(request);
         rentalPayment.setHouse(house);
         rentalPayment.setTenant(tenant);
+        if(request.getRentAmount() != house.getRent()){
+            throw new UnsupportedOperationException("provided amount does match the rent of house");
+        }
         RentalPayment savedRentalPayment = this.rentalPaymentRepository.save(rentalPayment);
         return this.rentalPaymentConverter.convertEntityToResponse(savedRentalPayment);
     }
