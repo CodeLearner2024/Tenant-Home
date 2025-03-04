@@ -32,7 +32,7 @@ public class RentalPaymentServiceImpl implements RentalPaymentService{
         rentalPayment.setHouse(house);
         rentalPayment.setTenant(tenant);
         if(request.getRentAmount() > house.getRent() || request.getRentAmount() < house.getRent()){
-            throw new UnsupportedOperationException("provided amount does match the rent of house");
+            throw new UnsupportedOperationException("provided amount must match the house's rent");
         }
         RentalPayment savedRentalPayment = this.rentalPaymentRepository.save(rentalPayment);
         return this.rentalPaymentConverter.convertEntityToResponse(savedRentalPayment);
