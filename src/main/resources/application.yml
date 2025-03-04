@@ -18,6 +18,12 @@ spring:
       properties:
         hibernate:
           format_sql: true
+  servlet:
+    multipart:
+      fileSizeThreshold: 300MB
+      enabled: true
+      maxFileSize: 300MB
+      maxRequestSize: 300MB
 springdoc:
   swaggerUi:
     path: docs
