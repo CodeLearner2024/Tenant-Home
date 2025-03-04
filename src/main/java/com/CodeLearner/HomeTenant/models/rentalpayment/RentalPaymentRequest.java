@@ -14,6 +14,6 @@ public class RentalPaymentRequest {
     private LocalDate paymentDate;
     private Double lateFee;
     private PAYMENTMETHOD paymentmethod;
-    private Long TenantId;
+    private Long tenantId;
     private Long HouseId;
 }

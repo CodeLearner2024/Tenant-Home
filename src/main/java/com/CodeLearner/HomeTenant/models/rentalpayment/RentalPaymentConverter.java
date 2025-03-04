@@ -18,19 +18,20 @@ public class RentalPaymentConverter {
     public RentalPaymentResponse convertEntityToResponse(RentalPayment rentalPayment){
         RentalPaymentResponse response = new RentalPaymentResponse();
         response.setPaymentDate(rentalPayment.getPaymentDate());
-        response.setId(response.getId());
+        response.setId(rentalPayment.getId());
         response.setLateFee(rentalPayment.getLateFee());
         response.setPaymentmethod(rentalPayment.getPaymentmethod());
         response.setRentAmount(rentalPayment.getRentAmount());
         response.setHouseResponse(this.houseConverter.toResponse(rentalPayment.getHouse()));
         response.setTenantResponse(this.tenantConverter.toResponse(rentalPayment.getTenant()));
+        response.setImage(rentalPayment.getImage());
         return response;
     }
 
     public RentalPayment convertRequestToEntity(RentalPaymentRequest request){
         RentalPayment rentalPayment = new RentalPayment();
         rentalPayment.setPaymentDate(LocalDate.now());
-        rentalPayment.setPaymentmethod(rentalPayment.getPaymentmethod());
+        rentalPayment.setPaymentmethod(request.getPaymentmethod());
         rentalPayment.setRentAmount(request.getRentAmount());
         rentalPayment.setLateFee(request.getLateFee());
         return rentalPayment;

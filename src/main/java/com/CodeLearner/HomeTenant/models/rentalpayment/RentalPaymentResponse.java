@@ -1,6 +1,7 @@
 package com.CodeLearner.HomeTenant.models.rentalpayment;
 
 import com.CodeLearner.HomeTenant.models.house.HouseResponse;
+import com.CodeLearner.HomeTenant.models.image.Image;
 import com.CodeLearner.HomeTenant.models.tenant.TenantResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +20,5 @@ public class RentalPaymentResponse {
     private PAYMENTMETHOD paymentmethod;
     private TenantResponse tenantResponse;
     private HouseResponse houseResponse;
+    private Image image;
 }
