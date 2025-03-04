@@ -32,11 +32,11 @@ public class RentalPaymentServiceImpl implements RentalPaymentService{
         rentalPayment.setHouse(house);
         rentalPayment.setTenant(tenant);
         if(request.getRentAmount() > house.getRent() || request.getRentAmount() < house.getRent()){
-            throw new UnsupportedOperationException("provided amount must match the house's rent");
+            throw new UnsupportedOperationException("provided amount must match the house's rent!");
         }
         List<RentalPayment> rentalPayments = this.rentalPaymentRepository.findRentalPaymentByTenantId(request.getTenantId());
         if(!rentalPayments.isEmpty()){
-            throw new UnsupportedOperationException("Sorry You've already payed this month");
+            throw new UnsupportedOperationException("Sorry You've already payed this month!");
         }
         RentalPayment savedRentalPayment = this.rentalPaymentRepository.save(rentalPayment);
         return this.rentalPaymentConverter.convertEntityToResponse(savedRentalPayment);
