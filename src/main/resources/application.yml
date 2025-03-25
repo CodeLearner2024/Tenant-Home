@@ -24,6 +24,8 @@ spring:
       enabled: true
       maxFileSize: 300MB
       maxRequestSize: 300MB
+  cache:
+    type: simple
 springdoc:
   swaggerUi:
     path: docs

@@ -8,6 +8,7 @@ import com.CodeLearner.HomeTenant.models.tenant.dependent.DependentRepository;
 import com.CodeLearner.HomeTenant.models.tenant.dependent.DependentResponse;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -104,6 +105,7 @@ public class TenantServiceImpl implements TenantService{
     }
 
     @Override
+    @CacheEvict(value = "itemCache",key = "#id")
     public DeleteOperationResponse delete(Long tenantId) {
         Tenant tenant = this.tenantRepository.findById(tenantId).orElseThrow(() -> new ResourceNotFoundException(I18nConstants.ELEMENT_NOT_FOUND,I18nConstants.ELEMENT_NOT_FOUND));
         this.dependentRepository.deleteDependents(tenant.getId());
