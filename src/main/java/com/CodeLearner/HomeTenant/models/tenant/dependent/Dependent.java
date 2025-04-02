@@ -2,10 +2,7 @@ package com.CodeLearner.HomeTenant.models.tenant.dependent;
 
 import com.CodeLearner.HomeTenant.models.tenant.Tenant;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +17,7 @@ public class Dependent {
     private Long id;
     private String firstname;
     private String lastname;
+    @Enumerated(EnumType.STRING)
     private RELATION relation;
 
     @ManyToOne(optional = false)
